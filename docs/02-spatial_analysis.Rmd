@@ -198,6 +198,8 @@ Name the new object `bart_utm`
 ## Challenge: Solution
 
 ```{r}
+#Subsetting BART data
+#bart_sf = bart [bart$CO == 'SF', ]
 
 # Transform Bart to UTM
 bart_utm <- st_transform(bart_sf, st_crs(SFhomes15_utm))
@@ -261,7 +263,7 @@ challenge_map = tm_shape(SFboundary) +
 tm_shape(SFhighways) +
   tm_lines(col = 'purple', lwd = 4) +
 tm_shape(SFhomes15_sf) +
-  tm_dots(col = 'black', size = 0.5) + 
+  tm_dots(col = 'black', size = 0.15) + 
 tm_shape(bart_utm) +
   tm_dots(col = 'skyblue', size = 1)
 ```
@@ -386,6 +388,7 @@ st_area(SFboundary_utm)
 Use the function `st_length` to compute length of linear geometries.
 ```{r}
 st_length(SFhighways)
+
 ```
 
 ## Length of highways
@@ -411,7 +414,7 @@ tot_length
 We can also calculate the perimeter of polygons, should we need it (though this is implemented in the `lwgeom` package, an `sf` dependency, rather than in `sf` itself.)
 
 ```{r}
-perim = lwgeom::st_perimeter(tracts)
+perim = lwgeom::st_perimeter(tracts) #Don't need lib fct bc package is a dependency of sf
 head(perim, 10)
 ```
 
@@ -444,6 +447,7 @@ Read the docs:
 ## Challenge
 
 That means we can easily calculate the distance between all SF properties and Embarcadero station. So go ahead and do that!
+
 
 ## Challenge: solution
 
