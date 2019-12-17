@@ -1507,6 +1507,9 @@ Syntax inspired by ggplot2 (but a bit simpler)
 First we'l load the library
 
 ```{r}
+install.packages("htmltools")
+library(htmltools)
+
 library(tmap)
 ```
 
@@ -1575,6 +1578,8 @@ ttm()
 To customize our tmaps, we need to use `tmap`'s more complex, `ggplot`-type  syntax
 
 ```{r, eval=F}
+tmap_mode("plot")
+
 tm_shape(tracts) + 
   tm_polygons(col="beige", border.col="red", alpha=0.5)
 ```
@@ -1846,7 +1851,7 @@ tm_tiles("Stamen.TonerLabels")
 Let's try watercolor!
 
 ```{r, echo=F, message=F}
-tmap_mode('view')
+tmap_mode('plot')
 tm_basemap("Stamen.Watercolor") +
 tm_shape(SFhomes15_sf) + 
 tm_dots(col="totvalue", size=.05, title = "San Francisco Property Values (2015)") +
