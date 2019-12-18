@@ -66,7 +66,7 @@ Use `setwd` to set your working directory to the location of the tutorial files.
 For example:
 
 ```{r, eval=FALSE}
-path = "/path/to/your/working_directory"
+path = "C:/Users/ruschenpohler/Desktop/GitHub/Geospatial-Fundamentals-in-R-with-sf"
 setwd(path)
 ```
 
@@ -129,6 +129,8 @@ we can just enter the object's name.
 
 ```{r}
 DEM
+
+str(DEM)
 ```
 You can view more detail in the RStudio Environment pane.
 
@@ -148,7 +150,9 @@ used by third-party packages to define their own special data structures.)
 Here's some of the important metadata.
 
 ```{r}
+DEM@data
 DEM@extent
+DEM@extent@xmax
 DEM@crs
 DEM@ncols
 ```
@@ -334,6 +338,14 @@ Note how the syntax is similar to `sp::spTransform`
 
 ```{r, error=T}
 DEM_WGS = projectRaster(DEM, projectExtent(DEM, st_crs(SFtracts)))
+
+#That means..
+
+#Making new projected frame
+projectExtent(DEM, st_crs(SFtracts))
+
+# Filling out raster data into new frame
+projectRaster(DEM, projectExtent(DEM, st_crs(SFtracts)))
 ```
 
 ## CRS Transformations
@@ -593,8 +605,12 @@ DEM_WGS_crop_masked = mask(DEM_WGS_crop, SFtracts)
 Here's what that gives us, compared to the unmasked object:
 
 ```{r}
+#Masked does not change extent of cropped but does change values!
 DEM_WGS_crop_masked
+#Cropping changes extent of Simple frame
 DEM_WGS_crop
+#Simple frame
+DEM_WGS
 ```
 
 ## Masking Raster Data
