@@ -444,7 +444,7 @@ Read the docs:
 ?st_distance
 ```
 
-## Challenge
+## Challenge',],
 
 That means we can easily calculate the distance between all SF properties and Embarcadero station. So go ahead and do that!
 
@@ -452,7 +452,7 @@ That means we can easily calculate the distance between all SF properties and Em
 ## Challenge: solution
 
 ```{r}
-dist2emb <- st_distance(bart_utm[bart_utm$STATION == 'EMBARCADERO',],
+dist2emb <- st_distance(bart_utm[bart_utm$STATION == 'EMBARCADERO
                      SFhomes15_utm)
 dist2emb <- set_units(dist2emb, km)
 
@@ -662,6 +662,7 @@ Read in the SF Census Tracts with pop data and call it `sftracts`
   
 Then, create a population `choropleth map`.
 
+
 ## Challenge: solution
 ```{r}
 #read in tracts
@@ -840,6 +841,9 @@ that we can then use to link up to non-spatial census data).
 ```{r}
 SFhomes15_utm$home_geoid <- sftracts_utm[unlist(homes_with_tracts),]$GEOID
 
+homes_with_tracts1 <- unlist(homes_with_tracts)
+sftracts_utm1 <- sftracts_utm[homes_with_tracts1,]
+SFhomes15_utm$home_geoid <- sftracts_utm1$GEOID
 ```
 
 ## Check the result
